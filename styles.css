@@ -4,13 +4,72 @@
     box-sizing: border-box;
 }
 
+.toggle-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  z-index: 2;
+  position: relative;
+}
+
+#theme-toggle {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  image-rendering: pixelated;
+}
+#theme-icon svg {
+  width: 48px;
+  height: 48px;
+  image-rendering: pixelated;
+  transition: filter 0.3s;
+}
+#theme-toggle:active #theme-icon svg {
+  filter: brightness(0.8) drop-shadow(0 0 4px #ffd93b88);
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* Pixelated lofi scenery background for day mode */
+  background: url('data:image/svg+xml;utf8,<svg width="320" height="180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="%23f6f5f3"/><rect y="120" width="320" height="60" fill="%23b2d6c6"/><rect y="140" width="320" height="40" fill="%2398b9ab"/><rect y="160" width="320" height="20" fill="%237a8b7b"/><rect x="40" y="100" width="30" height="40" fill="%23e0c3a3"/><rect x="60" y="120" width="10" height="20" fill="%23bfa77a"/><rect x="200" y="110" width="40" height="30" fill="%23e0c3a3"/><rect x="220" y="130" width="10" height="10" fill="%23bfa77a"/><rect x="150" y="130" width="20" height="10" fill="%23bfa77a"/></svg>');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.5s;
+}
+
+body.dark-mode {
+  /* Pixelated lofi scenery background for dark mode */
+  background: url('data:image/svg+xml;utf8,<svg width="320" height="180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="%2323272e"/><rect y="120" width="320" height="60" fill="%234a5a6a"/><rect y="140" width="320" height="40" fill="%233a4452"/><rect y="160" width="320" height="20" fill="%23282e36"/><rect x="40" y="100" width="30" height="40" fill="%235c4a3a"/><rect x="60" y="120" width="10" height="20" fill="%234a3a2a"/><rect x="200" y="110" width="40" height="30" fill="%235c4a3a"/><rect x="220" y="130" width="10" height="10" fill="%234a3a2a"/><rect x="150" y="130" width="20" height="10" fill="%234a3a2a"/></svg>');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #f1f1f1 !important;
+}
+
+body.dark-mode .pomodoro-container {
+  background: #232323 !important;
+  color: #f1f1f1 !important;
+}
+body.dark-mode button, body.dark-mode .controls button {
+  background-color: #333 !important;
+  color: #fff !important;
+  border: 1px solid #555 !important;
 }
 
 .container {
@@ -49,7 +108,7 @@ body {
 }
 
 .btn {
-    background: #4c51bf;
+    background: #b90aff;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -61,7 +120,7 @@ body {
 }
 
 .btn:hover {
-    background: #434190;
+    background: #ffffff;
     transform: translateY(-2px);
 }
 
@@ -467,6 +526,8 @@ button:hover {
   border-radius: 12px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 #timer {
   font-size: 3em;
@@ -486,6 +547,26 @@ button:hover {
 }
 .controls button:hover {
   background: #ff3b3b;
+}
+
+.pixel-bg-elements {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.pixel-cloud, .pixel-tree {
+  position: absolute;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 2px 0 #e0e0e0);
+  opacity: 0.95;
+  transition: opacity 0.5s;
+}
+body.dark-mode .pixel-bg-elements {
+  display: none;
 }
 
 @media (max-width: 768px) {

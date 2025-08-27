@@ -50,3 +50,26 @@ resetBtn.addEventListener('click', resetTimer);
 
 // Initialize display
 updateDisplay();
+
+// Dark mode toggle with localStorage
+// Sun/Moon toggle logic
+function updateThemeIcon() {
+  const isDark = document.body.classList.contains('dark-mode');
+  document.getElementById('sun-icon').style.display = isDark ? 'none' : '';
+  document.getElementById('moon-icon').style.display = isDark ? '' : 'none';
+}
+
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark-mode');
+}
+updateThemeIcon();
+
+document.getElementById('theme-toggle').addEventListener('click', function() {
+  document.body.classList.toggle('dark-mode');
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
+  updateThemeIcon();
+});
