@@ -1,75 +1,75 @@
-// Pomodoro Timer Variables
-let timer;
-let isRunning = false;
-let timeLeft = 25 * 60; // 25 minutes in seconds
-
-const timerDisplay = document.getElementById('timer');
-const startPauseBtn = document.getElementById('start-pause');
-const resetBtn = document.getElementById('reset');
-
-function updateDisplay() {
-  const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-  const seconds = (timeLeft % 60).toString().padStart(2, '0');
-  timerDisplay.textContent = `${minutes}:${seconds}`;
-}
-
-function startTimer() {
-  if (!isRunning) {
-    isRunning = true;
-    startPauseBtn.textContent = 'Pause';
-    timer = setInterval(() => {
-      if (timeLeft > 0) {
-        timeLeft--;
-        updateDisplay();
-      } else {
-        clearInterval(timer);
-        isRunning = false;
-        startPauseBtn.textContent = 'Start';
-        alert('Time is up!');
-      }
-    }, 1000);
+function checkPassword() {
+  const input = document.getElementById('password-input').value;
+  const errorMsg = document.getElementById('error-message');
+  if (input === 'Luwan') {
+    document.getElementById('password-container').style.display = 'none';
+    document.getElementById('main-content').style.display = 'flex';
+    document.body.style.background = 'linear-gradient(135deg, #b3e0ff 0%, #e0f7fa 100%)';
+    errorMsg.textContent = '';
+    startFloatingHearts();
+    startFloatingWords();
+    startFloatingFoods();
   } else {
-    pauseTimer();
+    errorMsg.textContent = 'Wrong code! Try again.';
   }
 }
 
-function pauseTimer() {
-  isRunning = false;
-  startPauseBtn.textContent = 'Start';
-  clearInterval(timer);
-}
-
-function resetTimer() {
-  pauseTimer();
-  timeLeft = 25 * 60;
-  updateDisplay();
-}
-
-startPauseBtn.addEventListener('click', startTimer);
-resetBtn.addEventListener('click', resetTimer);
-
-// Initialize display
-updateDisplay();
-
-// Dark mode toggle with localStorage
-// Sun/Moon toggle logic
-function updateThemeIcon() {
-  const isDark = document.body.classList.contains('dark-mode');
-  document.getElementById('sun-icon').style.display = isDark ? 'none' : '';
-  document.getElementById('moon-icon').style.display = isDark ? '' : 'none';
-}
-
-if (localStorage.getItem('theme') === 'dark') {
-  document.body.classList.add('dark-mode');
-}
-updateThemeIcon();
-
-document.getElementById('theme-toggle').addEventListener('click', function() {
-  document.body.classList.toggle('dark-mode');
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('theme', 'dark');
-  } else {
-    localStorage.setItem('theme', 'light');
+function startFloatingHearts() {
+  const heartEmojis = ['❤️','💕','💖','💗','💓','💞','💘'];
+  const floatingHearts = document.getElementById('floating-hearts');
+  function createHeart() {
+    const heart = document.createElement('span');
+    heart.className = 'floating-heart';
+    heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    heart.style.left = Math.random() * 95 + 'vw';
+    heart.style.fontSize = (2 + Math.random() * 2) + 'rem';
+    floatingHearts.appendChild(heart);
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
   }
-  updateThemeIcon();
-});
+  setInterval(createHeart, 350);
+}
+
+function startFloatingWords() {
+  const phrases = [
+    'Itadakimasu',
+    'Okairi',
+    'Ohaiyo',
+    'Oyasumi',
+    'Kawaii',
+    'Mochi Mochi'
+  ];
+  const floatingPhrases = document.querySelector('.floating-phrases');
+  function createWord() {
+    const word = document.createElement('span');
+    word.className = 'floating-word';
+    word.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+    word.style.left = Math.random() * 90 + 'vw';
+    word.style.fontSize = (1.2 + Math.random() * 0.7) + 'rem';
+    floatingPhrases.appendChild(word);
+    setTimeout(() => {
+      word.remove();
+    }, 6000);
+  }
+  setInterval(createWord, 900);
+}
+
+function startFloatingFoods() {
+  const foodEmojis = [
+    '🍰','🧁','🍩','🍓','🍡','🍙','🍦','🍮','🐊','🦛'
+  ];
+  const floatingFoods = document.querySelector('.floating-foods');
+  function createFood() {
+    const food = document.createElement('span');
+    food.className = 'floating-food';
+    food.textContent = foodEmojis[Math.floor(Math.random() * foodEmojis.length)];
+    food.style.left = Math.random() * 90 + 'vw';
+    food.style.fontSize = (1.8 + Math.random() * 1.2) + 'rem';
+    floatingFoods.appendChild(food);
+    setTimeout(() => {
+      food.remove();
+    }, 7000);
+  }
+  setInterval(createFood, 700);
+}
