@@ -1,56 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro Timer</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luwan's Cute Landing Page</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="toggle-container">
-      <!-- Sun/Moon Toggle SVG Button -->
-      <button id="theme-toggle" aria-label="Toggle Dark/Light Mode" style="background: none; border: none; padding: 0; cursor: pointer;">
-        <span id="theme-icon">
-          <!-- Sun icon by default, will be replaced by JS -->
-          <svg id="sun-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="12" fill="#FFD93B" stroke="#F4C534" stroke-width="3"/>
-            <g stroke="#FFD93B" stroke-width="3">
-              <line x1="24" y1="4" x2="24" y2="12"/>
-              <line x1="24" y1="36" x2="24" y2="44"/>
-              <line x1="4" y1="24" x2="12" y2="24"/>
-              <line x1="36" y1="24" x2="44" y2="24"/>
-              <line x1="10.93" y1="10.93" x2="16.97" y2="16.97"/>
-              <line x1="31.03" y1="31.03" x2="37.07" y2="37.07"/>
-              <line x1="10.93" y1="37.07" x2="16.97" y2="31.03"/>
-              <line x1="31.03" y1="16.97" x2="37.07" y2="10.93"/>
-            </g>
-          </svg>
-          <svg id="moon-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" style="display:none;" xmlns="http://www.w3.org/2000/svg">
-            <path d="M36 34.5C32.5 36.5 28 36.5 24.5 34.5C18.5 31 16 23.5 19.5 17.5C21.5 14 25 12 28.5 12C29.5 12 30.5 12.2 31.5 12.5C30.5 13.5 30 15 30 16.5C30 20.1 33.4 23 37.5 23C38.5 23 39.5 22.8 40.5 22.5C40.5 27 39 31 36 34.5Z" fill="#F4C534" stroke="#FFD93B" stroke-width="3"/>
-          </svg>
-        </span>
-      </button>
+  <div id="password-container">
+    <div class="lock-box">
+      <h2>Enter the Magic Code</h2>
+      <input type="password" id="password-input" placeholder="Password">
+      <button onclick="checkPassword()">Enter</button>
+      <div id="error-message"></div>
     </div>
-    <!-- Pixel Trees and Clouds for Light Mode -->
-    <div class="pixel-bg-elements">
-      <!-- Cloud 1 -->
-      <svg class="pixel-cloud" style="top: 8%; left: 12%;" width="60" height="32" viewBox="0 0 60 32"><rect x="0" y="16" width="60" height="16" fill="#fff"/><rect x="8" y="8" width="44" height="16" fill="#fff"/><rect x="20" y="0" width="20" height="16" fill="#fff"/></svg>
-      <!-- Cloud 2 -->
-      <svg class="pixel-cloud" style="top: 18%; right: 10%;" width="40" height="20" viewBox="0 0 40 20"><rect x="0" y="8" width="40" height="12" fill="#fff"/><rect x="8" y="0" width="24" height="12" fill="#fff"/></svg>
-      <!-- Tree 1 -->
-      <svg class="pixel-tree" style="bottom: 8%; left: 8%;" width="32" height="64" viewBox="0 0 32 64"><rect x="12" y="40" width="8" height="24" fill="#8d6748"/><rect x="0" y="16" width="32" height="32" fill="#7ec850"/><rect x="8" y="8" width="16" height="16" fill="#7ec850"/></svg>
-      <!-- Tree 2 -->
-      <svg class="pixel-tree" style="bottom: 10%; right: 12%;" width="32" height="64" viewBox="0 0 32 64"><rect x="12" y="40" width="8" height="24" fill="#8d6748"/><rect x="0" y="16" width="32" height="32" fill="#7ec850"/><rect x="8" y="8" width="16" height="16" fill="#7ec850"/></svg>
+    <div class="decor decor-butterfly"></div>
+    <div class="decor decor-heart"></div>
+    <div class="decor decor-rose"></div>
+    <div class="decor decor-butterfly" style="top: 20%; left: 80%;"></div>
+    <div class="decor decor-heart" style="bottom: 20%; right: 20%;"></div>
+    <div class="decor decor-rose" style="top: 70%; left: 15%;"></div>
+  </div>
+  <div id="main-content" style="display:none;">
+    <div id="floating-hearts"></div>
+    <div class="top-text">
+      <h1 class="japanese">いおり、好きだよ</h1>
+      <p class="welcome-msg">Iori, I like you! (いおり、好きだよ)</p>
     </div>
-    <div class="pomodoro-container">
-        <h1>Pomodoro Timer</h1>
-        <div id="timer">25:00</div>
-        <div class="controls">
-            <button id="start-pause">Start</button>
-            <button id="reset">Reset</button>
-        </div>
+    <div class="cute-butterflies">
+      <div class="butterfly"></div>
+      <div class="butterfly"></div>
+      <div class="butterfly"></div>
+      <div class="butterfly"></div>
     </div>
-    <script src="script.js"></script>
+    <div class="sneeze-emoji-row" style="width:100%;display:flex;justify-content:center;align-items:center;">
+      <span class="sneeze-emoji" style="font-size:2.5rem;">🤧</span>
+    </div>
+    <div class="cute-cats">
+      <span class="emoji-cat" style="font-size:3rem;">🐈‍⬛</span>
+      <span class="emoji-cat" style="font-size:3rem;">🐈</span>
+    </div>
+    <div class="floating-phrases"></div>
+    <div class="floating-foods"></div>
+  </div>
+  <script src="script.js"></script>
 </body>
-</html> 
+</html>
